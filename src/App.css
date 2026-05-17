@@ -1,4 +1,4 @@
-/* Your Plugin CSS */
+/* ─── Base (from init — untouched) ──────────────────────────────────────── */
 
 main {
     display: flex;
@@ -34,14 +34,6 @@ input[type="text"]:disabled,
     opacity: 0.5;
 }
 
-.mapping select {
-    flex-shrink: 1;
-}
-
-.fields-column {
-    grid-column: span 2 / span 2;
-}
-
 .loading {
     display: flex;
     align-items: center;
@@ -66,25 +58,22 @@ input[type="text"]:disabled,
 
 .intro {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    height: 100%;
+    gap: 10px;
     width: 100%;
-    flex: 1;
-    text-align: center;
-    max-width: 160px;
-    gap: 15px;
 }
 
 .intro h2 {
     line-height: 1;
     font-size: 1em;
-    margin-bottom: 10px;
+    margin-bottom: 2px;
 }
 
 .intro p {
     color: var(--framer-color-text-tertiary);
+    font-size: 11px;
+    margin: 0;
 }
 
 .setup label {
@@ -97,70 +86,45 @@ input[type="text"]:disabled,
     color: var(--framer-color-text-secondary);
 }
 
-.mapping {
-    padding-bottom: 0;
-}
+/* ─── Ante additions ─────────────────────────────────────────────────────── */
 
-.mapping form {
-    height: 100%;
-}
-
-.mapping .fields {
-    display: grid;
-    grid-template-columns: 1fr 8px 1fr;
-    gap: 10px;
-    margin-bottom: auto;
-    padding-bottom: 10px;
-    align-items: center;
+.section-title {
+    font-size: 11px;
+    font-weight: 600;
     color: var(--framer-color-text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
 }
 
-.mapping .slug-field {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    justify-content: space-between;
-    gap: 10px;
-    color: var(--framer-color-text-tertiary);
-}
-
-.mapping .source-field {
+.toggle-row {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: left;
-    white-space: nowrap;
-    font-weight: 500;
-    background-color: var(--framer-color-bg-tertiary);
-    gap: 8px;
+    justify-content: space-between;
+    height: 30px;
+    width: 100%;
+    color: var(--framer-color-text-secondary);
+    font-size: 12px;
 }
 
-.mapping .source-field:focus-visible {
-    outline: none;
-    box-shadow: inset 0 0 0 1px var(--framer-color-tint);
+.field-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
 }
 
-.mapping .source-field input[type="checkbox"] {
-    cursor: pointer;
+.field-group label {
+    font-size: 11px;
+    color: var(--framer-color-text-tertiary);
 }
 
-.mapping .source-field input[type="checkbox"]:focus {
-    box-shadow: none;
-}
-
-[data-framer-theme="light"] .mapping .source-field input[type="checkbox"]:not(:checked) {
-    background: #ccc;
-}
-
-[data-framer-theme="dark"] .mapping .source-field input[type="checkbox"]:not(:checked) {
-    background: #666;
-}
-
-.mapping input[type="text"] {
+.field-group input[type="text"] {
     width: 100%;
 }
 
-.mapping footer {
+/* Sticky footer — keeps the insert button visible when panel scrolls */
+footer {
     position: sticky;
     bottom: 0;
     left: 0;
@@ -173,7 +137,7 @@ input[type="text"]:disabled,
     gap: 15px;
 }
 
-.mapping footer::before {
+footer::before {
     content: "";
     position: absolute;
     top: -45px;
@@ -182,8 +146,4 @@ input[type="text"]:disabled,
     height: 45px;
     background: linear-gradient(to bottom, transparent, var(--framer-color-bg));
     pointer-events: none;
-}
-
-.mapping footer > button {
-    text-transform: capitalize;
 }
