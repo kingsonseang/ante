@@ -1,9 +1,10 @@
+import type { VercelRequest, VercelResponse } from "@vercel/node"
 import { connect } from "framer-api"
 
-export default async function handler(req: Request) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Bug 1: wrong status — 405 Method Not Allowed, not 404
     if (req.method !== "POST") {
-        return Response.json({ message: "Method not allowed" }, { status: 405 })
+        return res.status(405).json({ message: "method not allowed" })
     }
 
     // Bug 2: req.body doesn't exist on the Web API Request object
@@ -12,7 +13,7 @@ export default async function handler(req: Request) {
 
     // Bug 3: invalid input is 400 Bad Request, not 404
     if (!email || !email.includes("@")) {
-        return Response.json({ message: "Invalid email" }, { status: 400 })
+        return res.status(400).json({ message: "Invalid email" })
     }
 
     // Bug 4: `using` requires TS 5.2+ and Symbol.asyncDispose support
@@ -24,7 +25,7 @@ export default async function handler(req: Request) {
         const waitlist = collections.find(c => c.name === "Ante Waitlist")
 
         if (!waitlist) {
-            return Response.json({ message: "Collection not found" }, { status: 404 })
+            return res.status(404).json({ message: "Collection not found" })
         }
 
         await waitlist.addItems([
@@ -40,7 +41,7 @@ export default async function handler(req: Request) {
             },
         ])
 
-        return Response.json({ success: true })
+        res.status(200).json({ success: true })
     } finally {
         // Always disconnect — even if an error is thrown above
         await framer.disconnect()
