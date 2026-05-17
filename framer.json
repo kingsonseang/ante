@@ -1,0 +1,9 @@
+{
+  "id": "b38fed",
+  "name": "Ante",
+  "modes": [
+    "configureManagedCollection",
+    "syncManagedCollection"
+  ],
+  "icon": "/icon.svg"
+}
