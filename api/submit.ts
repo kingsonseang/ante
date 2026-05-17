@@ -9,7 +9,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // Bug 2: req.body doesn't exist on the Web API Request object
     // Body must be parsed with await req.json()
-    const { email, firstName, lastName } = await req.json()
+    const { email, firstName, lastName } = await req.body()
 
     // Bug 3: invalid input is 400 Bad Request, not 404
     if (!email || !email.includes("@")) {
